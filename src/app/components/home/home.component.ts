@@ -1,25 +1,30 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,OnDestroy } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
-
-import cplayer from 'cplayer';
-
+import APlayer from 'APlayer';
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,OnDestroy  {
   constructor(
     private userService: UserService,
     private http: Http) {
     }
     public playlist = [];
+    public player;
     log:String;
     title = 'app';
     isCollapsed = false;
+    ngOnDestroy(){
+        console.log(this.player)
+        if(this.player){
+            this.player.destroy();
+        }
+    }
     ngOnInit() {
       let headers = new Headers();
       headers.append('Accept', 'application/json');
@@ -33,20 +38,25 @@ export class HomeComponent implements OnInit {
               console.log(response.json());
               for(let i=0;i<response.json().Body.length;i++){
                   this.playlist.push({
-                      src:response.json().Body[i].url,
-                      poster:response.json().Body[i].pic,
+                      url:response.json().Body[i].url,
+                      cover:response.json().Body[i].pic,
                       name:response.json().Body[i].title,
                       artist:response.json().Body[i].author,
+                      lrc:response.json().Body[i].lrc
                   });
               }
-              let player = new cplayer({
+              this.player = new APlayer({
                   element: document.getElementById('app3'),
-                  big: true,
-                  showPlaylist:true,
-                  autoplay:true,
+                  lrcType: 3,
+                  mini: false,
+                  theme: '#FADFA3',
+                  mutex: true,
+                  listFolded: false,
+                  autoplay:false,
+                  order:'random',
                   volume:0.2,
                   width:'100%',
-                  playlist: this.playlist
+                  audio: this.playlist
               });
           }
       )

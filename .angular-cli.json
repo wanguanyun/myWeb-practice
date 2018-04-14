@@ -20,6 +20,7 @@
       "prefix": "app",
       "styles": [
         "../src/assets/css/w3.css",
+        "../node_modules/aplayer/dist/APlayer.min.css",
         "styles.css"
       ],
       "scripts": [],
