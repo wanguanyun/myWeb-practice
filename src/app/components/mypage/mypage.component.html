@@ -1,17 +1,37 @@
 
-<div class="w3-container"> 
-    <label>title</label>
-    <input class="w3-input w3-border w3-round w3-margin-bottom" name="title" type="text">
-    <quill-editor [(ngModel)]="editorContent"
-            [options]="editorOptions"
-            (blur)="onEditorBlured($event)"
-            (focus)="onEditorFocused($event)"
-            (ready)="onEditorCreated($event)"
-            (change)="onContentChanged($event)"></quill-editor>
-    <button class="w3-button w3-block w3-black w3-margin-top" style="width:10%">Submit</button>
+<!-- <div [froalaEditor]='options' [(froalaModel)]="editorContent">Hello, Froala!</div>
+<button class="w3-button w3-block w3-black w3-margin-top" style="width:10%" (click)="submitTopic()">Submit</button>
+
+<div [froalaView]="editorContent"></div> -->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:10%">
+    <h3 class="w3-bar-item">仪表盘</h3>
+    <a class="w3-bar-item w3-button w3-grey" (click)="articleDropdownSwitch()"><i class="fa fa-star" style="font-size: 16px;margin-right: 10px;"></i>文章  <i class="fa fa-caret-down" style="margin-left: 50%;"></i></a>
+    <div [ngClass]="articleDropdownSwitchindex?'w3-show':'w3-hide'" class="w3-white w3-card">
+        <a class="w3-bar-item w3-button" style="padding-left:35px;"><i class="fa fa-file-text" style="font-size: 16px;margin-right: 10px;"></i>所有文章</a>
+        <a class="w3-bar-item w3-button" style="padding-left:35px;"><i class="fa fa-edit" style="font-size: 16px;margin-right: 10px;"></i>撰写文章</a>
+      </div>
+    <a class="w3-bar-item w3-button"><i class="fa fa-edit" style="font-size: 16px;margin-right: 10px;"></i>文章编辑</a>
+    <a class="w3-bar-item w3-button"><i class="fa fa fa-music" style="font-size: 16px;margin-right: 10px;"></i>音乐列表设置</a>
   </div>
-  <div class="w3-container">
-        <h3>大图样式</h3>
-        <div id="app3"></div>
+  <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" [style.display]="displayStyle" style="right:0;width:50%;z-index:5;">
+      <button (click)="closeRightMenu()" class="w3-bar-item w3-button w3-large">发布预览 &times;</button>
+      <div class="w3-container" [froalaView]="editorContent"></div>
   </div>
-  
+  <div class="w3-overlay w3-animate-opacity" (click)="closeRightMenu()" style="cursor:pointer" [style.display]="displayStyle"></div>
+<div class="w3-cell-row" style="height:100%;width:90%;margin-left:10%;">
+  <div style="width:100%;" class="w3-container w3-dark-grey w3-cell">
+      <div class="w3-panel w3-leftbar w3-cell-row" style="background-color: white;border-color: black;">
+          <div style="width:10%;white-space:nowrap;line-height:1;" class="w3-col"><p style="font-weight:bolder;font-size:16px;color: black;">标题：</p></div>
+          <div class="w3-rest">
+            <input style="background: none; background: rgba(255,255,255,0);outline: none;font-size:18px;color:#616161;padding-bottom:3px" class="w3-input w3-bottombar w3-border-dark-grey" type="text">
+          </div>
+        </div>
+        <div style="z-index: 0;" [froalaEditor]='options' [(froalaModel)]="editorContent">Hello, Froala!</div>
+        <button class="w3-btn w3-black w3-margin-top" style="width:10%;background-color:white;color:black;" (click)="openRightMenu()">预览</button>
+        <button class="w3-btn w3-teal w3-margin-top w3-margin-left" style="width:10%;background-color:white;color:black;" (click)="submitTopic()">提交</button>
+  </div>
+  <!-- <div style="width:50%;" class="w3-container w3-gray w3-cell" [froalaView]="editorContent" >
+   
+  </div> -->
+</div>
+
