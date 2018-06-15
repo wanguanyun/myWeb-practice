@@ -6,13 +6,18 @@ import { MusicPlayerComponent } from './components/plugins/music.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './components/services/auth.guard';
+import { ModifyArticleComponent } from './components/mypage/article/modifyArticle.component';
+import { ShowArticleComponent } from './components/mypage/article/showArticle.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'header', component: HeaderComponent},
     { path: 'musicplayer', component: MusicPlayerComponent},
-    { path: 'mypage', component: MypageComponent,canActivate: [AuthGuard]},
+    { path: 'mypage', component: MypageComponent,canActivate: [AuthGuard],children:[
+        {path: 'articleEdit', component: ModifyArticleComponent},
+        {path: 'articleList', component: ShowArticleComponent}
+    ]},
     // { path: 'home', component: HomeComponent,canActivate: [AuthGuard]}
     { path: 'home', component: HomeComponent,children:[
        

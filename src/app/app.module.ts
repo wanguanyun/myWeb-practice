@@ -12,6 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MypageComponent } from './components/mypage/mypage.component';
 import { MusicPlayerComponent } from './components/plugins/music.component';
+import { ModifyArticleComponent } from './components/mypage/article/modifyArticle.component';
+import { ShowArticleComponent } from './components/mypage/article/showArticle.component';
 import { AuthGuard } from './components/services/auth.guard';
 import { AuthenticationService } from './components/services/authentication.service';
 import { UserService } from './components/services/user.service';
@@ -27,7 +29,9 @@ import { AppRoutingModule } from './app-routing.module';
     HomeComponent,
     HeaderComponent,
     MypageComponent,
-    MusicPlayerComponent
+    MusicPlayerComponent,
+    ModifyArticleComponent,
+    ShowArticleComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,48 @@
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-right" [style.display]="displayStyle" style="right:0;width:50%;z-index:5;">
+        <button (click)="closeRightMenu()" class="w3-bar-item w3-button w3-large w3-dark-gray">发布预览 &times;</button>
+        <div class="w3-container w3-text-black" [froalaView]="editorContent"></div>
+    </div>
+    <div class="w3-overlay w3-animate-opacity" (click)="closeRightMenu()" style="cursor:pointer" [style.display]="displayStyle"></div>
+  <div style="width:80%;position: absolute;" class="w3-container w3-dark-grey w3-cell">
+      <div style="font-size: 25px;">撰写新文章</div>
+      <div class="w3-panel w3-leftbar w3-cell-row" style="background-color: white;border-color: black;">
+          <div style="width:10%;white-space:nowrap;line-height:1;" class="w3-col"><p style="font-weight:bolder;font-size:16px;color: black;">标题：</p></div>
+          <div class="w3-rest">
+            <input style="background: none; background: rgba(255,255,255,0);outline: none;font-size:18px;color:#616161;padding-bottom:3px" class="w3-input w3-bottombar w3-border-dark-grey" type="text">
+          </div>
+        </div>
+        <div style="z-index: 0;" [froalaEditor]='options' [(froalaModel)]="editorContent">Hello, Froala!</div>
+        <button class="w3-btn w3-khaki w3-margin-top" style="width:10%;background-color:white;color:black;position: fixed;bottom: 2%;" (click)="openRightMenu()">预览</button>
+        <button class="w3-btn w3-teal w3-margin-top w3-margin-left" style="width:10%;background-color:white;color:black;left: 21%;position: fixed;bottom: 2%;" (click)="submitTopic()">提交</button>
+  </div>
+  <div style="width:20%;float:right;padding: 0;" class="w3-container w3-cell">
+        <div class="w3-card-4" style="width:100%;margin-top: 53px; ">
+                <header class="w3-container w3-light-grey" style="font-size: 21px;">
+                  <h5>封面设置</h5>
+                </header>
+                <div class="w3-container" style="background-color: white;color: black;">
+                    <div>默认封面</div>
+                    <div class="w3-content">
+                                <img [ngStyle]="slideIndex == 1?{'display':'block'}:{'display':'none'}" class="mySlides" src="assets/img/woods.jpg" style="width:100%">
+                                <img [ngStyle]="slideIndex == 2?{'display':'block'}:{'display':'none'}" class="mySlides" src="assets/img/bridge.jpg" style="width:100%">
+                                <img [ngStyle]="slideIndex == 3?{'display':'block'}:{'display':'none'}" class="mySlides" src="assets/img/bridge.jpg" style="width:100%">
+                              
+                                <div class="w3-row-padding w3-section">
+                                  <div class="w3-col s4">
+                                    <img [ngClass]="slideIndex != 1?'w3-hover-opacity-off':'w3-opacity-off'" class="demo w3-opacity" src="assets/img/woods.jpg" style="width:100%" (click)="currentDiv(1)">
+                                  </div>
+                                  <div class="w3-col s4">
+                                    <img [ngClass]="slideIndex != 2?'w3-hover-opacity-off':'w3-opacity-off'" class="demo w3-opacity" src="assets/img/bridge.jpg" style="width:100%" (click)="currentDiv(2)">
+                                  </div>
+                                  <div class="w3-col s4">
+                                    <img [ngClass]="slideIndex != 3?'w3-hover-opacity-off':'w3-opacity-off'" class="demo w3-opacity" src="assets/img/bridge.jpg" style="width:100%" (click)="currentDiv(3)">
+                                  </div>
+                                </div>
+                              </div>
+                </div>
+                <footer class="w3-container w3-light-grey">
+                    <h6 style="margin: 0 0 4px 0;"><input class="w3-check" style="width: 22px;" type="checkbox" checked="checked">
+                    显示封面图片</h6>
+                </footer>
+              </div>
+    </div>
